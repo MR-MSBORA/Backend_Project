@@ -8,8 +8,24 @@ dotenv.config({
     path: './env'
 })
 
-connectDB(); // 2.It will execute the connectDB(), and it should have done what we wanted from it.
+connectDB()
+    // 2.It will execute the connectDB(), and it should have done what we wanted from it.
+    //connectDB() is written using asychronous JS, and whenever a async/await used it will return a promise. To handle that promise we require .then() and .catch() method
+    .then(() => {
+        app.on("error",(err)=>{
+            console.log("ERRR:::::::::::::",err);
+            throw err;
+        })
 
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`Server is running at port : ${process.env.PORT}`);
+
+        })
+    })
+    .catch((error) => {
+        console.log("Mongo DB connection failed !!!!", error);
+
+    })
 
 
 
