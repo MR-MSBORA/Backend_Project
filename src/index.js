@@ -3,9 +3,10 @@ import dotenv from "dotenv"; // 4.1 to solve problem of "3." we will first do th
 
 
 import connectDB from "../db/index.js";
+import { app } from "../src/app.js";        // ✅ IMPORT app
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
 
 connectDB()
